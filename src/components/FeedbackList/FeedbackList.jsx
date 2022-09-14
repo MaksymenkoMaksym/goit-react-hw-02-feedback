@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
-
+import { Component } from 'react';
+import { FeedbackListStyled, FeedbackItem } from './FeedbackList.styled';
 export class Feedback extends Component {
   render() {
     const { list, state, total = 0, positivePercentage = 0 } = this.props;
     let buttonList = [];
     for (const i of list) {
       buttonList.push(
-        <li key={i}>
+        <FeedbackItem key={i}>
           {i}: {state[i]}{' '}
-        </li>
+        </FeedbackItem>
       );
     }
-    buttonList.push(<li key={'totalFeedback'}>Total Feedback: {total}</li>);
     buttonList.push(
-      <li key={'positiveFeedback'}>
+      <FeedbackItem key={'totalFeedback'}>Total Feedback: {total}</FeedbackItem>
+    );
+    buttonList.push(
+      <FeedbackItem key={'positiveFeedback'}>
         Positive Feedback: {positivePercentage} %
-      </li>
+      </FeedbackItem>
     );
 
-    return <ul>{buttonList}</ul>;
+    return <FeedbackListStyled>{buttonList}</FeedbackListStyled>;
   }
 }

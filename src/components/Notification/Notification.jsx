@@ -1,4 +1,4 @@
-
+import { NotificationParagraph } from './Notification.styled';
 export const Notification = ({ message }) => (
-    <p>{message}</p>
-)
+  <NotificationParagraph>{message}</NotificationParagraph>
+);

@@ -1,6 +1,16 @@
+import {
+  SectionStyled,
+  SectionTitleOne,
+  SectionTitleTwo,
+} from './Section.styled';
+
 export const Section = ({ priority, title, children }) => (
-  <section>
-    {priority === 1 ? <h1>{title}</h1> : <h2>{title}</h2>}
+  <SectionStyled>
+    {priority === 1 ? (
+      <SectionTitleOne>{title}</SectionTitleOne>
+    ) : (
+      <SectionTitleTwo>{title}</SectionTitleTwo>
+    )}
     {children}
-  </section>
+  </SectionStyled>
 );
