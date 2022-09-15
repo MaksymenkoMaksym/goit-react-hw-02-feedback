@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
   SectionStyled,
   SectionTitleOne,
@@ -14,3 +16,9 @@ export const Section = ({ priority, title, children }) => (
     {children}
   </SectionStyled>
 );
+
+Section.propTypes = {
+  priority: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.any,
+};

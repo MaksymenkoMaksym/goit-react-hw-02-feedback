@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Section } from './Section/Section';
 import { ButtonList } from './Buttons/Buttons';
 import { Feedback } from './FeedbackList/FeedbackList';
@@ -13,7 +13,7 @@ export class App extends Component {
   data = {
     isClicked: false,
   };
-  countFeedbackType = type => {
+  onLeaveFeedback = type => {
     this.setState(prevState => ({ [type]: prevState[type] + 1 }));
     this.data.isClicked = true;
   };
@@ -30,17 +30,20 @@ export class App extends Component {
         <Section title="Please leave feedback" priority={1}>
           <ButtonList
             options={['good', 'neutral', 'bad']}
-            onLeaveFeedback={this.countFeedbackType}
+            onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>
 
         <Section title="Statistics" priority={2}>
           {this.data.isClicked ? (
             <Feedback
-              list={['good', 'neutral', 'bad']}
-              state={this.state}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
+              list={[
+                `good: ${this.state.good}`,
+                `neutral: ${this.state.neutral}`,
+                `bad: ${this.state.bad}`,
+                `Total Feedback: ${this.countTotalFeedback()}`,
+                `Positive Feedback: ${this.countPositiveFeedbackPercentage()}%`,
+              ]}
             />
           ) : (
             <Notification message="There is no feedback" />
